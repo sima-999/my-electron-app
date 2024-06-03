@@ -8,6 +8,17 @@
   },
   "main": "main.js",
   "type": "module",
+  "config": {
+    "forge": {
+      "publish": [
+        {
+          "provider": "github",
+          "repo": "sima-999/my-electron-app",
+          "token": "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"
+        }
+      ]
+    }
+  },
   "scripts": {
     "dev": "electron .",
     "start": "electron-forge start",
