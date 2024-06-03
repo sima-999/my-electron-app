@@ -1,5 +1,5 @@
 const { contextBridge,ipcRenderer } = require('electron/renderer')
-const name = '司马懿'
+const name = '司马懿-诸葛亮'
 contextBridge.exposeInMainWorld('userInfo', {
   getName: () => name,
   name,
