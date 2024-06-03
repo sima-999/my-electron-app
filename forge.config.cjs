@@ -5,10 +5,23 @@ module.exports = {
   packagerConfig: {
     asar: true,
     appVersion: "1.0.0",
-    name: "司马懿",
+    name: "my-electron-app",
     // icon:"./assets/img/favicon",
   },
   rebuildConfig: {},
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'sima-999',//github-user-name
+          name: 'my-electron-app'//github-repo-name
+        },
+        prerelease: false,
+        draft: true
+      }
+    }
+  ],
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
