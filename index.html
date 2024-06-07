@@ -6,21 +6,40 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
+      content="script-src 'self'"
     />
-    <meta
+    <!-- <meta
       http-equiv="X-Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
-    />
+    /> -->
     <title>Hello World!</title>
+    <style>
+        #container {
+          -webkit-app-region: drag;
+          padding: 10px;
+          cursor: move;
+        }
+    </style>
   </head>
-    <body>
+    <body style="-webkit-app-region: drag;">
+    <textarea style="-webkit-app-region: drag" id="container" spellcheck="false"></textarea>
     <h1>Hello World!</h1>
     We are using Node.js <span id="node-version"></span>,
     Chromium <span id="chrome-version"></span>,
     and Electron <span id="electron-version"></span>.
     <p id="info">1111</p>
     <p id="ping"></p>
+    <div>
+      <span>Title: </span><input id="title"/>
+      <button id="btn" type="button">Set</button>
+    </div>
+    <div>
+      <button type="button" id="btnForOpen">Open a File</button>
+      File path: <strong id="filePath"></strong>
+    </div>
+    <div>
+      Current value: <strong id="counter">0</strong>
+    </div>
   </body>
   <script src="./renderer.js"></script>
 </html>

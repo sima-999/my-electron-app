@@ -1,12 +1,12 @@
 const { FusesPlugin } = require('@electron-forge/plugin-fuses');
 const { FuseV1Options, FuseVersion } = require('@electron/fuses');
-
 module.exports = {
   packagerConfig: {
     asar: true,
     appVersion: "1.0.1",
     name: "my-electron-app",
-    // icon:"./assets/img/favicon",
+    icon:"./assets/icon",
+    platform:'all'
   },
   rebuildConfig: {},
   publishers: [
