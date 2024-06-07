@@ -1,4 +1,4 @@
-import { app, BrowserWindow,ipcMain,dialog,Menu,MenuItem,Tray,nativeImage } from 'electron/main'
+import { app, BrowserWindow,ipcMain,dialog,Menu,MenuItem,Tray,nativeImage,screen } from 'electron/main'
 import path from 'node:path'
 import os from 'node:os'
 import {updateElectronApp} from 'update-electron-app'
@@ -13,19 +13,31 @@ async function handleFileOpen () {
 }
 let progressInterval
 const createWindow = () => {
+  const displayWorkAreaSize = screen.getAllDisplays()[0].workArea;
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: parseInt(`${displayWorkAreaSize.width * 0.85}`, 10),
+    height: parseInt(`${displayWorkAreaSize.height * 0.85}`, 10),
+    movable:true,
+    show: false,
+    center: true,
+    resizable: true,
+    titleBarStyle: 'default',
+    // width: 800,
+    // height: 600,
     // transparent: true,
     // titleBarStyle: 'hidden',
     // trafficLightPosition: { x: 100, y: 100 },
     // titleBarStyle: 'hiddenInset',//
     // titleBarStyle: 'customButtonsOnHover',//隐藏红绿灯
     // titleBarStyle: 'hidden',//隐藏标题栏和全尺寸内容窗口
-    resizable:false,
-    frame: false,//无边框窗口
+    // resizable:false,
+    // frame: false,//无边框窗口
     icon: path.join(import.meta.dirname, 'assets/icon.iconset/icon_128x128@2x.png'),
     webPreferences: {
+      devTools: true,
+      contextIsolation: false,
+      nodeIntegration: true,
+      enableRemoteModule:true,
       //sandbox: false,//当前页面进程禁用渲染器沙盒
       preload: path.join(import.meta.dirname, 'preload.cjs')
     }
@@ -75,6 +87,9 @@ const createWindow = () => {
   // mainWindow.setWindowButtonVisibility(false)
 
   mainWindow.loadFile('index.html')
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show();
+  });
   // mainWindow.loadURL('https://baidu.com')
   // const contents = mainWindow.webContents
   // console.log(contents)
